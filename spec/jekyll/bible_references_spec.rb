@@ -19,7 +19,6 @@ RSpec.describe Jekyll::BibleReferences do
   before do
     site.reset
     site.read
-    # (site.pages | posts | site.docs_to_write).each { |p| p.content.strip! }
     site.render
   end
 
