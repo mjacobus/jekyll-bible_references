@@ -1,6 +1,7 @@
 ---
 layout: default
-title: I'm a page
+title: Index Page
 ---
 
-test @TestUser test
+
+- 1 Cor 15:2
