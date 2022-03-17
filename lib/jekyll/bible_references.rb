@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 require_relative "bible_references/version"
+require_relative "bible_references/version"
+require_relative "bible_references/linkify_filter"
+require_relative "bible_references/scripture_pattern"
 
 require "html/pipeline"
 
