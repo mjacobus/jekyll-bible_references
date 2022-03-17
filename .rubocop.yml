@@ -1,0 +1,96 @@
+require:
+  - rubocop-performance
+  - rubocop-rake
+  - rubocop-rspec
+
+AllCops:
+  TargetRubyVersion: 2.7
+  NewCops: enable
+  Exclude:
+    - 'tmp/**/*'
+    - 'node_modules/**/*'
+    - 'script/**/*'
+    - 'log/**/*'
+    - 'docker/**/*'
+    - 'doc/**/*'
+    - 'bin/**/*'
+    - 'Rakefile'
+    - 'config.ru'
+    - 'config/**/*'
+    - 'db/schema.rb'
+    - 'node_modules/**/*'
+    - 'vendor/**/*'
+
+
+Layout/FirstArrayElementIndentation:
+  EnforcedStyle: consistent
+
+Layout/LineLength:
+  Max: 120
+   
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+
+Layout/MultilineOperationIndentation:
+  Enabled: true
+  EnforcedStyle: indented
+
+Lint/MissingSuper:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+
+Naming/RescuedExceptionsVariableName:
+  PreferredName: 'exception'
+
+Naming/PredicateName:
+  Enabled: false
+
+Style/AccessorGrouping:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/FormatStringToken:
+  EnforcedStyle: template
+
+Style/GuardClause:
+  Enabled: false
+
+Style/IfUnlessModifier:
+  Enabled: false
+
+Style/StringLiterals:
+  Enabled: true
+  EnforcedStyle: double_quotes
+
+Style/StringLiteralsInInterpolation:
+  Enabled: true
+  EnforcedStyle: double_quotes
+
+RSpec:
+  Exclude:
+    - 'spec/factories/**/*'
+
+RSpec/ExampleLength:
+  Max: 10
+
+RSpec/ExpectChange:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/NestedGroups:
+  Max: 4
+
+# while that is a good rule, AR objects can't be properly instance_double'd
+RSpec/VerifiedDoubles:
+  Enabled: false
+
