@@ -22,6 +22,7 @@ if ENV["CI"] || ENV["COVERAGE"]
   end
 end
 
+require "jekyll"
 require "jekyll/bible_references"
 
 RSpec.configure do |config|
@@ -35,5 +36,15 @@ RSpec.configure do |config|
 
   config.expect_with :rspec do |c|
     c.syntax = :expect
+  end
+
+  FIXTURES_DIR = File.expand_path("fixtures", __dir__)
+
+  def fixtures_dir(*paths)
+    File.join(FIXTURES_DIR, *paths)
+  end
+
+  def find_by_title(docs, title)
+    docs.find { |d| d.data["title"] == title }
   end
 end
