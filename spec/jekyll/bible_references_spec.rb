@@ -39,6 +39,7 @@ RSpec.describe Jekyll::BibleReferences do
       link = "<a href=\"#{url}\">#{text}</a>"
 
       expect(post.output).to include(link)
+      expect(post.output).to include("<html")
     end
   end
 end

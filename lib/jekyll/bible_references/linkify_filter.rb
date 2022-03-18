@@ -12,8 +12,8 @@ module Jekyll
           return doc
         end
 
-        doc.search("body").each do |body|
-          replace_body_entries(body)
+        doc.search("body").each do |_body|
+          replace_body_entries(doc)
         end
 
         doc
