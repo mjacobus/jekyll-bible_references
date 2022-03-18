@@ -5,7 +5,7 @@ RSpec.describe Jekyll::BibleReferences::LinkifyFilter do
 
   let(:context) do
     {
-      "bible_references_link_template" => "to?{verse}"
+      "bible_references_link_template" => "to?q=%{QUERY}"
     }
   end
   let(:input) { [] }
@@ -21,15 +21,23 @@ RSpec.describe Jekyll::BibleReferences::LinkifyFilter do
     expect(filter.call.to_s).to eql("")
   end
 
-  it "linkifies a simple test" do
+  it "linkifies a text element element" do
     scripture = "1 Corinthians 15:1"
     input.push("<p>")
-    input.push("Read #{scripture} and also #{scripture}.")
+    input.push(scripture.gsub(/\s/, ""))
     input.push("</p>")
 
     escaped = ERB::Util.url_encode(scripture)
+    link = "to?q=#{escaped}"
 
-    expect(html).to include("Read <a href=\"to?q={escaped}\">1 Corinthians 15:1</a>")
-    expect(html).to include("and also <a href=\"to?q={escaped}\">1 Corinthians 15:1</a>.")
+    expect(html).to eq("<p><a href=\"#{link}\">1 Corinthians 15:1</a></p>")
+  end
+
+  it "does not linkifies a text that is are inside a link" do
+    link = "<a href=\"#{link}\"><span>1 Corinthians 15:1</span></a>"
+
+    input.push(link)
+
+    expect(html).to eq(link)
   end
 end
