@@ -10,7 +10,10 @@ RSpec.describe Jekyll::BibleReferences do
         "skip_config_files" => false,
         "collections" => { "docs" => { "output" => true } },
         "source" => fixtures_dir,
-        "destination" => fixtures_dir("_site")
+        "destination" => fixtures_dir("_site"),
+        "bible_references" => {
+          "link_template" => "to?q=%{QUERY}"
+        }
       )
     )
   end
@@ -30,7 +33,12 @@ RSpec.describe Jekyll::BibleReferences do
     let(:post) { find_by_title(site.posts, "I'm a post") }
 
     it ".linkify" do
-      expect(post.output).to match(/Biblified/)
+      text = "Gênesis 1:1"
+      encoded = ERB::Util.url_encode(text)
+      url = "to?q=#{encoded}"
+      link = "<a href=\"#{url}\">#{text}</a>"
+
+      expect(post.output).to include(link)
     end
   end
 end

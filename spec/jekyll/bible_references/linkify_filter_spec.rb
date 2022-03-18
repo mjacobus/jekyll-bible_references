@@ -27,8 +27,8 @@ RSpec.describe Jekyll::BibleReferences::LinkifyFilter do
     input.push(scripture.gsub(/\s/, ""))
     input.push("</p>")
 
-    escaped = ERB::Util.url_encode(scripture)
-    link = "to?q=#{escaped}"
+    encoded = ERB::Util.url_encode(scripture)
+    link = "to?q=#{encoded}"
 
     expect(html).to eq("<p><a href=\"#{link}\">1 Corinthians 15:1</a></p>")
   end
