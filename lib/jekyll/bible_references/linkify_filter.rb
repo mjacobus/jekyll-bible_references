@@ -12,8 +12,8 @@ module Jekyll
           return doc
         end
 
-        doc.search(".//text() | text()").each do |node|
-          replace_node(node)
+        doc.search("body").each do |body|
+          replace_body_entries(body)
         end
 
         doc
@@ -21,11 +21,17 @@ module Jekyll
 
       private
 
-      def replace_node(node)
-        if has_ancestor?(node, "a")
-          return
-        end
+      def replace_body_entries(body)
+        body.search(".//text() | text()").each do |node|
+          if has_ancestor?(node, forbidden_ancestors)
+            next
+          end
 
+          replace_node(node)
+        end
+      end
+
+      def replace_node(node)
         html = node.to_html
 
         replacement = html.gsub(matcher) do |_original|
@@ -35,6 +41,10 @@ module Jekyll
         end
 
         node.replace(Nokogiri::HTML.fragment(replacement))
+      end
+
+      def forbidden_ancestors
+        %w[a script]
       end
 
       def matcher
