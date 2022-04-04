@@ -11,7 +11,7 @@ A collection of useful commands for my personal use.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'jekyll-bible_refernces'
+gem 'jekyll-bible_references'
 ```
 
 And then execute:
@@ -20,7 +20,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install jekyll-bible_refernces
+    $ gem install jekyll-bible_references
 
 TODO: Update when the gem is ready
 
