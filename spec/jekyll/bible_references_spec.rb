@@ -36,7 +36,7 @@ RSpec.describe Jekyll::BibleReferences do
       text = "Gênesis 1:1"
       encoded = ERB::Util.url_encode(text)
       url = "to?q=#{encoded}"
-      link = "<a href=\"#{url}\">#{text}</a>"
+      link = "<a href=\"#{url}\" class=\"linkified-scripture\">#{text}</a>"
 
       expect(post.output).to include(link)
       expect(post.output).to include("<html")

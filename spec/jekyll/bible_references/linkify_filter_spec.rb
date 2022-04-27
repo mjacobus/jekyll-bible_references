@@ -36,7 +36,7 @@ RSpec.describe Jekyll::BibleReferences::LinkifyFilter do
     encoded = ERB::Util.url_encode(scripture)
     link = "to?q=#{encoded}"
 
-    expect(html).to include("<p><a href=\"#{link}\">1 Corinthians 15:1</a></p>")
+    expect(html).to include("<p><a href=\"#{link}\" class=\"linkified-scripture\">1 Corinthians 15:1</a></p>")
   end
 
   it "does not linkify a scripture references outside body" do

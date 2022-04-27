@@ -10,7 +10,7 @@ module Jekyll
       end
 
       def linkify(scripture)
-        "<a href=\"#{resolve_link(scripture)}\">#{scripture}</a>"
+        "<a href=\"#{resolve_link(scripture)}\" class=\"linkified-scripture\">#{scripture}</a>"
       end
 
       private
