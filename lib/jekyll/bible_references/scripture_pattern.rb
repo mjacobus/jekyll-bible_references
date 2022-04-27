@@ -15,7 +15,7 @@ module Jekyll
       end
 
       def prefix
-        /(?<prefix>\d*)/
+        /(?<prefix>[1-3]?)/
       end
 
       def book
@@ -23,7 +23,7 @@ module Jekyll
       end
 
       def verses
-        /(?<verses>\d{0,3}:?[0-9,\-\s]+)/
+        /(?<verses>\d{0,3}:[0-9]+)/
       end
 
       def maybe_spaces

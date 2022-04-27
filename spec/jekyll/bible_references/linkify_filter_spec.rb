@@ -62,4 +62,43 @@ RSpec.describe Jekyll::BibleReferences::LinkifyFilter do
 
     expect(html).to eq(input.join)
   end
+
+  # rubocop:disable RSpec/MultipleMemoizedHelpers:
+  describe "edgy strings" do
+    let(:mock_linkifier) do
+      Class.new do
+        def linkify(scripture)
+          "/#{scripture}\\"
+        end
+      end
+    end
+
+    let(:context) { { "linkifier" => mock_linkifier.new } }
+
+    [
+      [
+        "- 1Ti 2:8 - foo bar baz",
+        '- /1 Ti 2:8\ - foo bar baz'
+      ],
+      [
+        "- 1Ti 2:8; 2 Pedro 3:15 - foo bar baz",
+        '- /1 Ti 2:8\; /2 Pedro 3:15\ - foo bar baz'
+      ],
+      [
+        "- João 2:8; 2 Pedro 3:15 - foo bar baz",
+        '- /João 2:8\; /2 Pedro 3:15\ - foo bar baz',
+        true
+      ]
+    ].each do |(input_value, expected, skip_for_now)|
+      it "linkifies #{input_value}" do
+        if skip_for_now
+          skip
+        end
+        input.push(body(input_value))
+
+        expect(html).to eq(body(expected))
+      end
+    end
+  end
+  # rubocop:enable RSpec/MultipleMemoizedHelpers:
 end
